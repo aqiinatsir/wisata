@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontak Kami - Portal Wisata Daerah</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>WISATA<span>DAERAH</span></h1>
+            </div>
+            
+            <nav class="navbar">
+                <ul class="nav-list">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="destinasi.html">Destinasi</a></li>
+                    <li><a href="paket-wisata.html">Paket Wisata</a></li>
+                    <li><a href="kontak.html" class="active">Kontak Kami</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Page Header -->
+        <section class="page-header">
+            <div class="container">
+                <h2>Kontak Kami</h2>
+                <p>Hubungi kami untuk informasi dan pemesanan paket wisata</p>
+            </div>
+        </section>
+
+        <!-- Kontak Section -->
+        <section class="kontak-section">
+            <div class="container">
+                <div class="kontak-grid">
+                    <!-- Info Kontak -->
+                    <div class="kontak-info">
+                        <h3>Informasi Kontak</h3>
+                        
+                        <div class="info-item">
+                            <div class="info-icon">📍</div>
+                            <div class="info-content">
+                                <h4>Alamat</h4>
+                                <p>Jl. Wisata Indah No. 123<br>Kota Pariwisata, Indonesia 12345</p>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-icon">📞</div>
+                            <div class="info-content">
+                                <h4>Telepon</h4>
+                                <p>+62 123 4567 890<br>+62 987 6543 210</p>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-icon">✉️</div>
+                            <div class="info-content">
+                                <h4>Email</h4>
+                                <p>info@wisatadaerah.com<br>booking@wisatadaerah.com</p>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-icon">🕐</div>
+                            <div class="info-content">
+                                <h4>Jam Operasional</h4>
+                                <p>Senin - Jumat: 08.00 - 17.00<br>Sabtu: 09.00 - 15.00</p>
+                            </div>
+                        </div>
+
+                        <div class="social-media">
+                            <h4>Ikuti Kami</h4>
+                            <div class="social-links">
+                                <a href="" class="social-link">IG</a>
+                                <a href="" class="social-link">YT</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Form Kontak -->
+                    <div class="kontak-form-wrapper">
+                        <h3>Kirim Pesan</h3>
+                        <form class="kontak-form" id="kontakForm">
+                            <div class="form-group">
+                                <label for="nama">Nama Lengkap *</label>
+                                <input type="text" id="nama" name="nama" required placeholder="Masukkan nama lengkap">
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="email">Email *</label>
+                                    <input type="email" id="email" name="email" required placeholder="email@example.com">
+                                </div>
+                                <div class="form-group">
+                                    <label for="telepon">Nomor Telepon</label>
+                                    <input type="tel" id="telepon" name="telepon" placeholder="+62 xxx xxxx xxxx">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="paket">Paket Wisata yang Diminati</label>
+                                <select id="paket" name="paket">
+                                    <option value="">-- Pilih Paket --</option>
+                                    <option value="hemat">Paket Hemat (Rp 500.000)</option>
+                                    <option value="reguler">Paket Reguler (Rp 1.500.000)</option>
+                                    <option value="premium">Paket Premium (Rp 3.000.000)</option>
+                                    <option value="eksklusif">Paket Eksklusif (Rp 7.500.000)</option>
+                                    <option value="keluarga">Paket Keluarga (Rp 2.000.000)</option>
+                                    <option value="custom">Custom Paket</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="jumlah">Jumlah Peserta</label>
+                                <input type="number" id="jumlah" name="jumlah" min="1" placeholder="Jumlah orang">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="tanggal">Rencana Tanggal Keberangkatan</label>
+                                <input type="date" id="tanggal" name="tanggal">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="pesan">Pesan / Pertanyaan *</label>
+                                <textarea id="pesan" name="pesan" rows="5" required placeholder="Tulis pesan atau pertanyaan Anda..."></textarea>
+                            </div>
+
+                            <button type="submit" class="btn-submit">Kirim Pesan</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Map Section -->
+        <section class="map-section">
+            <div class="container">
+                <h3 class="section-title">Lokasi Kami</h3>
+                <div class="map-container">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126746.18206346103!2d107.618607!3d-6.903429!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e6398252477f%3A0x146bc1f50f20ac9d!2sBandung%2C%20Kota%20Bandung%2C%20Jawa%20Barat!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid" 
+                        width="100%" 
+                        height="400" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq-section">
+            <div class="container">
+                <h3 class="section-title">Pertanyaan yang Sering Diajukan</h3>
+                
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            Bagaimana cara memesan paket wisata?
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Anda dapat memesan melalui form kontak di atas, menghubungi nomor telepon kami, atau mengirim email ke booking@wisatadaerah.com. Tim kami akan merespons dalam 24 jam.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            Apakah bisa custom paket wisata?
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Ya, kami menerima custom paket sesuai kebutuhan Anda. Silakan hubungi kami untuk konsultasi gratis mengenai destinasi dan fasilitas yang diinginkan.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            Bagaimana kebijakan pembatalan?
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Pembatalan H-3 mendapat refund 50%, pembatalan H-1 tidak mendapat refund. Namun, Anda bisa reschedule ke tanggal lain dengan konfirmasi 3 hari sebelumnya.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            Apakah ada diskon untuk group besar?
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Ya, kami memberikan diskon khusus untuk grup di atas 10 orang. Hubungi kami untuk penawaran terbaik.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>WISATA<span>DAERAH</span></h3>
+                    <p>Portal wisata terpercaya untuk menjelajahi keindahan Indonesia.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="destinasi.html">Destinasi</a></li>
+                        <li><a href="paket-wisata.html">Paket Wisata</a></li>
+                        <li><a href="kontak.html">Kontak</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Kontak</h4>
+                    <p>Email: info@wisatadaerah.com</p>
+                    <p>Telp: +62 123 4567 890</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Portal Wisata Daerah. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
