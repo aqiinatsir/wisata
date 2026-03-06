@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destinasi - Portal Wisata Daerah</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo"><h1>WISATA<span>DAERAH</span></h1></div>
+            <nav class="navbar">
+                <ul class="nav-list">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="destinasi.html" class="active">Destinasi</a></li>
+                    <li><a href="paket-wisata.html">Paket Wisata</a></li>
+                    <li><a href="kontak.html">Kontak Kami</a></li>
+                </ul>
+                <div class="hamburger"><span></span><span></span><span></span></div>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <section class="page-header">
+            <div class="container"><h2>Destinasi Wisata</h2><p>Jelajahi berbagai destinasi menakjubkan di daerah kami</p></div>
+        </section>
+        <section class="filter-section">
+            <div class="container">
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">Semua</button>
+                    <button class="filter-btn" data-filter="alam">Alam</button>
+                    <button class="filter-btn" data-filter="budaya">Budaya</button>
+                    <button class="filter-btn" data-filter="pantai">Pantai</button>
+                </div>
+            </div>
+        </section>
+        <section class="destinasi-full">
+            <div class="container">
+                <div class="grid-container">
+                    <article class="card" data-category="alam">
+                        <div class="card-image"><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400" alt="Gunung Bromo"><span class="card-badge">Alam</span></div>
+                        <div class="card-content"><h3>Gunung Bromo</h3><p class="location">📍 Jawa Timur</p><p>Gunung berapi aktif dengan pemandangan sunrise yang legendaris dan lautan pasir yang luas.</p><div class="card-footer"><span class="price">Rp 50.000</span><a href="#" class="btn-secondary">Detail</a></div></div>
+                    </article>
+                    <article class="card" data-category="pantai">
+                        <div class="card-image"><img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400" alt="Pantai Kuta"><span class="card-badge">Pantai</span></div>
+                        <div class="card-content"><h3>Pantai Kuta</h3><p class="location">📍 Bali</p><p>Pantai ikonik dengan pasir putih, ombak sempurna untuk surfing, dan sunset yang memukau.</p><div class="card-footer"><span class="price">Gratis</span><a href="#" class="btn-secondary">Detail</a></div></div>
+                    </article>
+                    <article class="card" data-category="budaya">
+                        <div class="card-image"><img src="https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?w=400" alt="Candi Borobudur"><span class="card-badge">Budaya</span></div>
+                        <div class="card-content"><h3>Candi Borobudur</h3><p class="location">📍 Jawa Tengah</p><p>Candi Buddha terbesar di dunia dengan relief yang menceritakan kisah kehidupan Buddha.</p><div class="card-footer"><span class="price">Rp 75.000</span><a href="#" class="btn-secondary">Detail</a></div></div>
+                    </article>
+                    <article class="card" data-category="alam">
+                        <div class="card-image"><img src="https://images.unsplash.com/photo-1544644181-1484b3fdfc62?w=400" alt="Danau Toba"><span class="card-badge">Alam</span></div>
+                        <div class="card-content"><h3>Danau Toba</h3><p class="location">📍 Sumatera Utara</p><p>Danau vulkanik terbesar di dunia dengan Pulau Samosir di tengahnya.</p><div class="card-footer"><span class="price">Gratis</span><a href="#" class="btn-secondary">Detail</a></div></div>
+                    </article>
+                    <article class="card" data-category="alam">
+                        <div class="card-image"><img src="https://images.unsplash.com/photo-1596401057633-54c8c1b61397?w=400" alt="Monkey Forest"><span class="card-badge">Alam</span></div>
+                        <div class="card-content"><h3>Monkey Forest Ubud</h3><p class="location">📍 Bali</p><p>Hutan suci yang menjadi habitat ratusan kera ekor panjang dan pura kuno.</p><div class="card-footer"><span class="price">Rp 80.000</span><a href="#" class="btn-secondary">Detail</a></div></div>
+                    </article>
+                    <article class="card" data-category="budaya">
+                        <div class="card-image"><img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=400" alt="Pura Tanah Lot"><span class="card-badge">Budaya</span></div>
+                        <div class="card-content"><h3>Pura Tanah Lot</h3><p class="location">📍 Bali</p><p>Pura laut yang dibangun di atas batu besar dengan pemandangan sunset yang ikonik.</p><div class="card-footer"><span class="price">Rp 60.000</span><a href="#" class="btn-secondary">Detail</a></div></div>
+                    </article>
+                    <article class="card" data-category="pantai">
+                        <div class="card-image"><img src="https://images.unsplash.com/photo-1516690561799-46d8f74f9abf?w=400" alt="Raja Ampat"><span class="card-badge">Pantai</span></div>
+                        <div class="card-content"><h3>Raja Ampat</h3><p class="location">📍 Papua Barat</p><p>Surga bawah laut dengan keanekaragaman hayati terbesar di dunia.</p><div class="card-footer"><span class="price">Rp 100.000</span><a href="#" class="btn-secondary">Detail</a></div></div>
+                    </article>
+                    <article class="card" data-category="budaya">
+                        <div class="card-image"><img src="https://images.unsplash.com/photo-1566159313318-d0bd3e4d3426?w=400" alt="Prambanan"><span class="card-badge">Budaya</span></div>
+                        <div class="card-content"><h3>Candi Prambanan</h3><p class="location">📍 Yogyakarta</p><p>Kompleks candi Hindu terbesar di Indonesia dengan arsitektur yang megah.</p><div class="card-footer"><span class="price">Rp 50.000</span><a href="#" class="btn-secondary">Detail</a></div></div>
+                    </article>
+                    <article class="card" data-category="alam">
+                        <div class="card-image"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400" alt="Gunung Rinjani"><span class="card-badge">Alam</span></div>
+                        <div class="card-content"><h3>Gunung Rinjani</h3><p class="location">📍 Lombok</p><p>Gunung berapi tertinggi kedua di Indonesia dengan Danau Segara Anak yang indah.</p><div class="card-footer"><span class="price">Rp 150.000</span><a href="#" class="btn-secondary">Detail</a></div></div>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom"><p>&copy; 2026 Portal Wisata Daerah. All Rights Reserved.</p></div>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
