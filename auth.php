@@ -9,7 +9,7 @@ session_start();
 
 // ── Konfigurasi Database ────────────────────────────────────
 define('DB_HOST', 'localhost');
-define('DB_NAME', 'wisata_daerah');   // Ganti sesuai nama database Anda
+define('DB_NAME', 'wisata');   // Ganti sesuai nama database Anda
 define('DB_USER', 'root');            // Default XAMPP
 define('DB_PASS', '');                // Default XAMPP (kosong)
 define('DB_CHARSET', 'utf8mb4');
