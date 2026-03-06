@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paket Wisata - Portal Wisata Daerah</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Modal Styles */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.65);
+            z-index: 500;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(4px);
+        }
+        .modal-overlay.show { display: flex; }
+
+        .order-modal {
+            background: white;
+            border-radius: 20px;
+            padding: 36px 32px;
+            max-width: 480px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+            animation: modalIn 0.35s cubic-bezier(0.16,1,0.3,1) both;
+        }
+        @keyframes modalIn { from { transform: translateY(20px) scale(0.97); opacity: 0; } to { transform: none; opacity: 1; } }
+
+        .modal-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px; }
+        .modal-header h3 { font-size: 20px; font-weight: 700; color: #1a1a1a; }
+        .modal-close { background: none; border: none; font-size: 22px; cursor: pointer; color: #999; padding: 0; line-height: 1; transition: color 0.2s; }
+        .modal-close:hover { color: #333; }
+
+        .modal-paket-name {
+            background: linear-gradient(135deg, #e6fffa, #c6f6d5);
+            border-radius: 12px;
+            padding: 14px 18px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .modal-paket-name strong { font-size: 16px; color: #1a1a1a; }
+        .modal-paket-name span { font-size: 18px; font-weight: 800; color: #2c7a7b; }
+
+        .modal-form .form-group { margin-bottom: 16px; }
+        .modal-form label { display: block; font-size: 13px; font-weight: 600; color: #555; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .modal-form input, .modal-form select {
+            width: 100%;
+            padding: 11px 14px;
+            border: 1.5px solid #e5e5e5;
+            border-radius: 10px;
+            font-size: 15px;
+            font-family: inherit;
+            outline: none;
+            transition: border 0.2s;
+        }
+        .modal-form input:focus, .modal-form select:focus { border-color: #2c7a7b; box-shadow: 0 0 0 3px rgba(44,122,123,0.1); }
+
+        .modal-total {
+            background: #f8f8f8;
+            border-radius: 10px;
+            padding: 14px 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 15px;
+            font-weight: 600;
+            color: #333;
+        }
+        .modal-total .total-amount { font-size: 20px; font-weight: 800; color: #2c7a7b; }
+
+        .modal-actions { display: flex; gap: 12px; }
+        .btn-add-cart, .btn-buy-now {
+            flex: 1;
+            padding: 13px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            border: none;
+            font-family: inherit;
+            transition: all 0.25s;
+        }
+        .btn-add-cart { background: #f0fffe; border: 2px solid #2c7a7b; color: #2c7a7b; }
+        .btn-add-cart:hover { background: #e6fffa; }
+        .btn-buy-now { background: linear-gradient(135deg, #285e61, #2c7a7b); color: white; }
+        .btn-buy-now:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(44,122,123,0.35); }
+
+        /* Cart count in header */
+        .cart-count { 
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 18px;
+            height: 18px;
+            background: #ef4444;
+            color: white;
+            border-radius: 9px;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 0 4px;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: #2c7a7b;
+            color: white;
+            padding: 14px 20px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 500;
+            z-index: 1000;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+            transform: translateY(60px);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+        }
+        .toast.show { transform: translateY(0); opacity: 1; }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1><a href="index.html">WISATA<span>DAERAH</span></a></h1>
+            </div>
+            <nav class="navbar">
+                <ul class="nav-list">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="destinasi.html">Destinasi</a></li>
+                    <li><a href="paket-wisata.html" class="active">Paket Wisata</a></li>
+                    <li><a href="kontak.html">Kontak Kami</a></li>
+                </ul>
+                <a href="checkout.php" class="cart-nav-btn" id="cartBtn">
+                    🛒 Keranjang <span class="cart-count" id="cartCount">0</span>
+                </a>
+                <div class="hamburger"><span></span><span></span><span></span></div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h2>Paket Wisata</h2>
+                <p>Pilih paket wisata terbaik sesuai kebutuhan dan budget Anda</p>
+            </div>
+        </section>
+
+        <section class="paket-section">
+            <div class="container">
+                <h2 class="section-title">Daftar Paket Wisata</h2>
+                
+                <div class="table-container">
+                    <table class="paket-table">
+                        <thead>
+                            <tr>
+                                <th>Nama Paket</th>
+                                <th>Durasi</th>
+                                <th>Destinasi</th>
+                                <th>Fasilitas</th>
+                                <th>Harga</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <strong>Paket Hemat</strong>
+                                    <span class="badge badge-popular">Populer</span>
+                                </td>
+                                <td>1 Hari</td>
+                                <td>2 Destinasi</td>
+                                <td>
+                                    <ul class="fasilitas-list">
+                                        <li>Transportasi</li>
+                                        <li>Guide Lokal</li>
+                                    </ul>
+                                </td>
+                                <td class="harga">Rp 500.000</td>
+                                <td><button class="btn-table" onclick="openOrder('hemat','Paket Hemat','1 Hari',500000)">Pesan</button></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Paket Reguler</strong></td>
+                                <td>2 Hari 1 Malam</td>
+                                <td>4 Destinasi</td>
+                                <td>
+                                    <ul class="fasilitas-list">
+                                        <li>Transportasi</li>
+                                        <li>Hotel Bintang 2</li>
+                                        <li>Makan 3x</li>
+                                        <li>Guide Profesional</li>
+                                    </ul>
+                                </td>
+                                <td class="harga">Rp 1.500.000</td>
+                                <td><button class="btn-table" onclick="openOrder('reguler','Paket Reguler','2H1M',1500000)">Pesan</button></td>
+                            </tr>
+                            <tr class="highlight">
+                                <td>
+                                    <strong>Paket Premium</strong>
+                                    <span class="badge badge-best">Best Value</span>
+                                </td>
+                                <td>3 Hari 2 Malam</td>
+                                <td>6 Destinasi</td>
+                                <td>
+                                    <ul class="fasilitas-list">
+                                        <li>Transportasi AC</li>
+                                        <li>Hotel Bintang 3</li>
+                                        <li>Makan Lengkap</li>
+                                        <li>Guide Profesional</li>
+                                        <li>Dokumentasi</li>
+                                    </ul>
+                                </td>
+                                <td class="harga">Rp 3.000.000</td>
+                                <td><button class="btn-table" onclick="openOrder('premium','Paket Premium','3H2M',3000000)">Pesan</button></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Paket Eksklusif</strong></td>
+                                <td>5 Hari 4 Malam</td>
+                                <td>8+ Destinasi</td>
+                                <td>
+                                    <ul class="fasilitas-list">
+                                        <li>Transportasi Premium</li>
+                                        <li>Hotel Bintang 4</li>
+                                        <li>All You Can Eat</li>
+                                        <li>Guide Private</li>
+                                        <li>Dokumentasi Profesional</li>
+                                        <li>Asuransi Perjalanan</li>
+                                    </ul>
+                                </td>
+                                <td class="harga">Rp 7.500.000</td>
+                                <td><button class="btn-table" onclick="openOrder('eksklusif','Paket Eksklusif','5H4M',7500000)">Pesan</button></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Paket Keluarga</strong>
+                                    <span class="badge badge-family">Family</span>
+                                </td>
+                                <td>2 Hari 1 Malam</td>
+                                <td>Destinasi Ramah Anak</td>
+                                <td>
+                                    <ul class="fasilitas-list">
+                                        <li>Mini Bus</li>
+                                        <li>Hotel Family</li>
+                                        <li>Makan Keluarga</li>
+                                        <li>Guide Ramah Anak</li>
+                                        <li>Activity Kids</li>
+                                    </ul>
+                                </td>
+                                <td class="harga">Rp 2.000.000</td>
+                                <td><button class="btn-table" onclick="openOrder('keluarga','Paket Keluarga','2H1M',2000000)">Pesan</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Mobile Cards -->
+                <div class="paket-cards-mobile">
+                    <div class="paket-card">
+                        <h3>Paket Hemat <span class="badge badge-popular">Populer</span></h3>
+                        <p class="durasi">⏱ 1 Hari</p>
+                        <p class="destinasi">📍 2 Destinasi</p>
+                        <ul><li>Transportasi</li><li>Guide Lokal</li></ul>
+                        <p class="harga">Rp 500.000</p>
+                        <button class="btn-primary" onclick="openOrder('hemat','Paket Hemat','1 Hari',500000)">Pesan Sekarang</button>
+                    </div>
+                    <div class="paket-card highlight">
+                        <h3>Paket Premium <span class="badge badge-best">Best Value</span></h3>
+                        <p class="durasi">⏱ 3 Hari 2 Malam</p>
+                        <p class="destinasi">📍 6 Destinasi</p>
+                        <ul><li>Transportasi AC</li><li>Hotel Bintang 3</li><li>Makan Lengkap</li><li>Guide Profesional</li><li>Dokumentasi</li></ul>
+                        <p class="harga">Rp 3.000.000</p>
+                        <button class="btn-primary" onclick="openOrder('premium','Paket Premium','3H2M',3000000)">Pesan Sekarang</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="info-section">
+            <div class="container">
+                <div class="info-grid">
+                    <div class="info-card"><h4>💰 Pembayaran</h4><p>DP 30% untuk booking, pelunasan H-7 sebelum keberangkatan</p></div>
+                    <div class="info-card"><h4>✅ Termasuk</h4><p>Semua tiket masuk destinasi sesuai jadwal</p></div>
+                    <div class="info-card"><h4>❌ Tidak Termasuk</h4><p>Pengeluaran pribadi, asuransi (khusus paket hemat & reguler)</p></div>
+                    <div class="info-card"><h4>🔄 Pembatalan</h4><p>Refund 50% jika pembatalan H-3, tidak refund jika H-1</p></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Order Modal -->
+    <div class="modal-overlay" id="orderModal">
+        <div class="order-modal">
+            <div class="modal-header">
+                <h3>Detail Pemesanan</h3>
+                <button class="modal-close" onclick="closeModal()">×</button>
+            </div>
+            <div class="modal-paket-name">
+                <div>
+                    <div style="font-size:12px;color:#888;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Paket Dipilih</div>
+                    <strong id="modalPaketName">Paket Hemat</strong>
+                </div>
+                <span id="modalPaketHarga">Rp 500.000</span>
+            </div>
+
+            <div class="modal-form">
+                <div class="form-group">
+                    <label>Tanggal Keberangkatan</label>
+                    <input type="date" id="modalTanggal" min="">
+                </div>
+                <div class="form-group">
+                    <label>Jumlah Peserta</label>
+                    <input type="number" id="modalPeserta" value="1" min="1" max="50" oninput="updateTotal()">
+                </div>
+            </div>
+
+            <div class="modal-total">
+                <span>Estimasi Total</span>
+                <span class="total-amount" id="modalTotal">Rp 500.000</span>
+            </div>
+
+            <div class="modal-actions">
+                <button class="btn-add-cart" onclick="addToCart()">🛒 Keranjang</button>
+                <button class="btn-buy-now" onclick="buyNow()">⚡ Beli Sekarang</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">✅ Ditambahkan ke keranjang!</div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>WISATA<span>DAERAH</span></h3>
+                    <p>Portal wisata terpercaya untuk menjelajahi keindahan Indonesia.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="destinasi.html">Destinasi</a></li>
+                        <li><a href="paket-wisata.html">Paket Wisata</a></li>
+                        <li><a href="kontak.html">Kontak</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Kontak</h4>
+                    <p>Email: info@wisatadaerah.com</p>
+                    <p>Telp: +62 123 4567 890</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Portal Wisata Daerah. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Cart stored in localStorage for JS side (PHP session synced on checkout)
+        let currentPaket = null;
+
+        // Set min date to tomorrow
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        document.getElementById('modalTanggal').min = tomorrow.toISOString().split('T')[0];
+        document.getElementById('modalTanggal').value = tomorrow.toISOString().split('T')[0];
+
+        function formatRupiah(num) {
+            return 'Rp ' + num.toLocaleString('id-ID');
+        }
+
+        function openOrder(id, nama, durasi, harga) {
+            currentPaket = { id, nama, durasi, harga };
+            document.getElementById('modalPaketName').textContent = nama;
+            document.getElementById('modalPaketHarga').textContent = formatRupiah(harga);
+            document.getElementById('modalPeserta').value = 1;
+            updateTotal();
+            document.getElementById('orderModal').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('orderModal').classList.remove('show');
+            document.body.style.overflow = '';
+        }
+
+        function updateTotal() {
+            if (!currentPaket) return;
+            const peserta = parseInt(document.getElementById('modalPeserta').value) || 1;
+            document.getElementById('modalTotal').textContent = formatRupiah(currentPaket.harga * peserta);
+        }
+
+        function getFormData() {
+            return {
+                tanggal: document.getElementById('modalTanggal').value,
+                peserta: parseInt(document.getElementById('modalPeserta').value) || 1
+            };
+        }
+
+        function addToCart() {
+            const { tanggal, peserta } = getFormData();
+            // Send to PHP via form POST
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = 'checkout.php';
+            const fields = {
+                action: 'add',
+                paket_id: currentPaket.id,
+                tanggal,
+                peserta
+            };
+            Object.entries(fields).forEach(([k, v]) => {
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = k;
+                input.value = v;
+                form.appendChild(input);
+            });
+            
+            // Show toast first, then submit
+            closeModal();
+            showToast('✅ ' + currentPaket.nama + ' ditambahkan ke keranjang!');
+            
+            setTimeout(() => {
+                document.body.appendChild(form);
+                form.submit();
+            }, 800);
+        }
+
+        function buyNow() {
+            const { tanggal, peserta } = getFormData();
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = 'checkout.php?view=payment';
+            const fields = {
+                action: 'add',
+                paket_id: currentPaket.id,
+                tanggal,
+                peserta
+            };
+            // Redirect to cart first then payment
+            form.action = 'checkout.php';
+            Object.entries({...fields, action: 'add'}).forEach(([k, v]) => {
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = k;
+                input.value = v;
+                form.appendChild(input);
+            });
+            document.body.appendChild(form);
+            form.submit();
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.textContent = msg;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+
+        // Close modal on overlay click
+        document.getElementById('orderModal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+
+        // Close on ESC
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+    </script>
+</body>
+</html>
